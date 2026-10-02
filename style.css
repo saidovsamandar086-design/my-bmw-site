@@ -1,0 +1,546 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #000;
+}
+
+/* ==================== BANNER (rasm1.jpg) ==================== */
+.banner {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)), url('./rasm1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== NAVBAR ==================== */
+.navbar {
+    width: 90%;
+    max-width: 1400px;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 20px;
+    z-index: 100;
+}
+
+.logo1 {
+    width: clamp(140px, 18vw, 250px);
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.logo1:hover {
+    transform: scale(1.03);
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+    z-index: 110;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+li {
+    list-style-type: none;
+    display: inline-block;
+    position: relative;
+    margin: 0px clamp(5px, 1vw, 15px);
+}
+
+li a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: clamp(14px, 1.2vw, 18px);
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    display: block;
+}
+
+li a:hover {
+    color: aqua;
+    border-bottom: 2px solid aqua;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+/* ==================== SECTION DISPLAY (:target) ==================== */
+.section-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.banner:not(:has(:target)) #home,
+#home:target,
+#about:target,
+#contact:target,
+#help:target,
+#book:target {
+    display: flex;
+    opacity: 1;
+}
+
+/* ==================== HOME CONTENT ==================== */
+.content {
+    width: 90%;
+    max-width: 900px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.content h1 {
+    font-size: clamp(34px, 6vw, 60px);
+    word-spacing: clamp(4px, 1vw, 15px);
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+.content p {
+    font-size: clamp(15px, 1.8vw, 22px);
+    margin: 20px auto;
+    max-width: 800px;
+    line-height: 1.5;
+    color: aliceblue;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+#bannerBtns {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#bannerBtns button {
+    width: clamp(140px, 18vw, 180px);
+    padding: 14px 0px;
+    font-weight: bold;
+    font-size: clamp(14px, 1.4vw, 18px);
+    text-transform: uppercase;
+    border-radius: 30px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+#bannerBtns button:hover {
+    border-color: aqua;
+    color: aqua;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    transform: scale(1.05);
+}
+
+/* ==================== MODAL CARD ==================== */
+.modal-card {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 650px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: rgba(15, 25, 35, 0.85);
+    border: 1px solid aqua;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: clamp(20px, 3vw, 30px);
+    color: #fff;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    flex-direction: column;
+    z-index: 200;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    color: #ccc;
+    font-size: 28px;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: aqua;
+}
+
+.modal-card h2 {
+    color: aqua;
+    font-size: clamp(22px, 3.5vw, 32px);
+    margin-bottom: 15px;
+}
+
+.modal-card p {
+    font-size: clamp(14px, 1.5vw, 16px);
+    line-height: 1.5;
+}
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.custom-form input, 
+.custom-form select, 
+.custom-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.custom-form input:focus, 
+.custom-form select:focus, 
+.custom-form textarea:focus {
+    border-color: aqua;
+}
+
+.custom-form select option {
+    background: #111;
+    color: #fff;
+}
+
+.custom-form button {
+    padding: 14px;
+    border-radius: 25px;
+    border: 1px solid aqua;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-form button:hover {
+    background: aqua;
+    color: #000;
+    box-shadow: 0 0 10px aqua;
+}
+
+.faq-subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.faq-list {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.faq-item h3 {
+    color: aqua;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.faq-item p {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* ==================== CARD SECTION (rasm2.webp) ==================== */
+.card-section {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('./rasm2.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 60px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}   
+
+.cards {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.card, .card2, .card3, .card4 {
+    width: 100%;
+    max-width: 330px;
+    height: 490px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 15px;
+    transition: all 0.4s ease;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* HAR BIR KARTANING ASOSIY RASMLARI */
+.card { background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.65)), url('./bmw9.webp'); }
+.card2 { background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.65)), url('./rasm4.jpg'); }
+.card3 { background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.65)), url('./rasm6.jpg'); }
+.card4 { background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.65)), url('./rasm8.jpg'); }
+
+.card h1, .card2 h1, .card3 h1, .card4 h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    margin-top: 10px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.card-text {
+    width: 100%;
+    flex-grow: 1;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.card-text p {
+    padding: 12px; 
+    text-align: center;
+    line-height: 1.5;
+    color: transparent;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+}
+
+.card-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 5px;
+}
+
+.card-button button {
+    width: 120px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid aqua;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card-button button:hover {
+    background-color: aqua;
+    color: #000;
+    box-shadow: 0 0 10px aqua;
+}
+
+/* ==================== HOVER EFFEKTI ==================== */
+@media (hover: hover) and (min-width: 769px) {
+    .card:hover { 
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65)), url('./rasm3.jpg'); 
+        transform: translateY(-8px) scale(1.02); 
+    }
+    .card2:hover { 
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65)), url('./rasm5.jpg'); 
+        transform: translateY(-8px) scale(1.02); 
+    }
+    .card3:hover { 
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65)), url('./rasm7.jpg'); 
+        transform: translateY(-8px) scale(1.02); 
+    }
+    .card4:hover { 
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65)), url('./rasm9.jpg'); 
+        transform: translateY(-8px) scale(1.02); 
+    }
+
+    .card:hover .card-text p, 
+    .card2:hover .card-text p, 
+    .card3:hover .card-text p, 
+    .card4:hover .card-text p {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+    }
+}
+
+/* ==================== RESPONSIVE (MEDIA QUERIES) ==================== */
+
+/* 1. Planshetlar (992px gacha) */
+@media (max-width: 992px) {
+    .cards {
+        gap: 20px;
+    }
+    .card, .card2, .card3, .card4 {
+        max-width: 300px;
+        height: 460px;
+    }
+}
+
+/* 2. Mobil telefonlar (768px gacha) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(280px, 80vw);
+        height: 100vh;
+        background: rgba(11, 15, 25, 0.98);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 90px;
+        gap: 15px;
+        transition: right 0.4s ease;
+        border-left: 1px solid rgba(0, 255, 255, 0.25);
+    }
+
+    .nav-toggle:checked ~ ul {
+        right: 0;
+    }
+
+    .nav-toggle:checked ~ .hamburger span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+        background-color: aqua;
+    }
+    .nav-toggle:checked ~ .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-toggle:checked ~ .hamburger span:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+        background-color: aqua;
+    }
+
+    li {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    li a {
+        font-size: 18px;
+        padding: 12px 0;
+    }
+
+    /* Mobilda sensorli ekranda matn doimiy o'qilishi */
+    .card-text p {
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal-card {
+        width: 94%;
+        padding: 22px 16px;
+    }
+
+    .card-section {
+        background-attachment: scroll;
+    }
+}
+
+/* 3. Kichik smartfonlar (480px gacha) */
+@media (max-width: 480px) {
+    #bannerBtns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #bannerBtns button {
+        width: 85%;
+        max-width: 250px;
+    }
+
+    .card, .card2, .card3, .card4 {
+        max-width: 100%;
+        height: 440px;
+    }
+
+    .card-button button {
+        width: 110px;
+        font-size: 13px;
+    }
+}
